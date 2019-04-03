@@ -2,13 +2,15 @@ def CONTAINER_NAME="demo-build"
 def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="imkarthikn"
 def HTTP_PORT="8090"
+#env.docker = "/var/jenkins_home/docker/docker"
 
 node {
 
     stage('Initialize'){
         def dockerHome = tool 'mydocker'
         def mavenHome  = tool 'mymaven'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+        def docker = '/var/jenkins_home/docker/docker'
+        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:$docker:${env.PATH}"
     }
 
     stage('Checkout') {
