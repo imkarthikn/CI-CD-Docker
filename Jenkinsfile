@@ -2,7 +2,7 @@ def CONTAINER_NAME="demo-build"
 def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="imkarthikn"
 def HTTP_PORT="8090"
-
+env.docker = '/var/jenkins_home/docker/docker'
 node {
 
     stage('Initialize'){
@@ -51,13 +51,13 @@ node {
 def imagePrune(containerName){
     try {
         sh "/var/jenkins_home/docker/docker -v"
-        sh "docker image prune -f"
-        sh "docker stop $containerName"
+        sh "'$docker' image prune -f"
+        sh "'$docker' stop $containerName"
     } catch(error){}
 }
 
 def imageBuild(containerName, tag){
-    sh "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    sh "'$docker' build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
