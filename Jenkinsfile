@@ -51,20 +51,20 @@ node {
 def imagePrune(containerName){
     try {
         sh "/var/jenkins_home/docker/docker -v"
-        sh "'$docker' image prune -f"
-        sh "'$docker' stop $containerName"
+        sh "/var/jenkins_home/docker/docker image prune -f"
+        sh "/var/jenkins_home/docker/docker stop $containerName"
     } catch(error){}
 }
 
 def imageBuild(containerName, tag){
-    sh "'$docker' build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    sh "/var/jenkins_home/docker/docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
     echo "Image build complete"
 }
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
-    sh "docker login -u $dockerUser -p $dockerPassword"
-    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    sh "docker push $dockerUser/$containerName:$tag"
+    sh "/var/jenkins_home/docker/docker login -u $dockerUser -p $dockerPassword"
+    sh "/var/jenkins_home/docker/docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+    sh "/var/jenkins_home/docker/docker push $dockerUser/$containerName:$tag"
     echo "Image push complete"
 }
 
