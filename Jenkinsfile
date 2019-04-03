@@ -49,6 +49,7 @@ node {
 
 def imagePrune(containerName){
     try {
+        sh "/var/jenkins_home/docker/docker -v"
         sh "docker image prune -f"
         sh "docker stop $containerName"
     } catch(error){}
