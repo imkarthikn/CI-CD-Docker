@@ -2,7 +2,6 @@ def CONTAINER_NAME="demo-build"
 def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="imkarthikn"
 def HTTP_PORT="8090"
-#env.docker = "/var/jenkins_home/docker/docker"
 
 node {
 
