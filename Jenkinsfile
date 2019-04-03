@@ -69,7 +69,7 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword){
 }
 
 def runApp(containerName, tag, dockerHubUser, httpPort){
-    sh "/var/jenkins_home/docker/docker pull $dockerHubUser/$containerName"
-    sh "/var/jenkins_home/docker/docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
+    sh "/bin/docker pull $dockerHubUser/$containerName"
+    sh "/bin/docker run -d --rm -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
     echo "Application started on port: ${httpPort} (http)"
 }

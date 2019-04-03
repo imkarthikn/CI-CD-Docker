@@ -1,8 +1,5 @@
 package com.kodcu.controller;
 
-/*
- * Created by Vineet Sharma on 17/06/2018
- */
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
