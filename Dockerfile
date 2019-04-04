@@ -1,13 +1,13 @@
 FROM maven:3-alpine
+RUN mkdir -p /pipeline/src
+COPY pom.xml /pipeline/
 
-COPY pom.xml pipeline/
+COPY src/ /pipeline/src/
 
-COPY src/ pipeline/src/
-
-WORKDIR pipeline/
+WORKDIR /pipeline/
 
 RUN mvn clean install
 
 EXPOSE 8090
 
-ENTRYPOINT [ "java", "-jar", "/pipeline/target/jenkins-pipeline.jar"]
+ENTRYPOINT [ "java", "-jar", "/pipeline/target/demo-mindtree.jar"]
