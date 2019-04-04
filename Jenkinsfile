@@ -20,7 +20,7 @@ node {
         sh "mvn clean install"
     }
 
-    stage('Sonar'){
+    stage('Static code'){
         try {
             sh "mvn sonar:sonar"
         } catch(error){
@@ -28,11 +28,11 @@ node {
         }
      }
 
-    stage("Image Prune"){
+    stage("Image clean up"){
         imagePrune(CONTAINER_NAME)
     }
 
-    stage('Image Build'){
+    stage('Docker Build'){
         imageBuild(CONTAINER_NAME, CONTAINER_TAG)
     }
 
@@ -42,7 +42,7 @@ node {
         }
     }
 
-    stage('Run App'){
+    stage('APP Deploy'){
         runApp(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
     }
 
